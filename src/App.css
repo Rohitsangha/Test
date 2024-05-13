@@ -1,38 +1,128 @@
-.App {
+@font-face {
+  font-family: 'DinoKids';
+  src: url('../fonts/Dinokids.ttf') format('truetype'); /* Path to the TrueType font file */
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* Base mobile styles */
+body {
+  font-family: 'Comic Sans MS', 'Comic Neue', sans-serif;
+  background-color: #8cc63f; /* Vibrant green reminiscent of a lush jungle */
+  color: #453d3f; /* Deep earthy brown text for contrast */
+  margin: 0;
+  padding: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input[type="text"], button {
+  width: 90%; /* Full-width inputs and buttons with padding */
+  font-size: 16px;
+  padding: 15px; /* Increased padding for easier interaction */
+  margin: 10px auto; /* Centered */
+  display: block;
+  background: #fff3c1; /* Light yellow background for inputs and buttons */
+  border: 2px solid #f2a654; /* Orange border */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  background-color: #f2a654; /* Orange button for actions */
+  color: #453d3f;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button:hover {
+  background-color: #ffc48c; /* Lighter orange on hover */
+  transform: scale(1.1);
+}
+
+input[type="text"]:focus, button:focus {
+  outline: none;
+  border-color: #8cc63f; /* Green focus border matching the body background */
+  transform: scale(1.05);
+}
+
+/* Enhanced Header Styles */
+
+
+/* Header with dinosaur theme */
+.header {
+  background-color: #7cb342; /* Rich jungle green background */
   color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 32px; /* Large font size for better visibility */
+  font-family: 'DinoKids', cursive, sans-serif; /* Custom dinosaur font */
+  border-radius: 15px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Subtle shadow for depth */
+  background-image: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 100%), url('https://example.com/dinosaur-pattern.jpg'); /* Background gradient over an image */
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px; /* Space below header */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Enhances text readability */
 }
 
-.App-link {
-  color: #61dafb;
+/* Example of how to apply additional decorative elements */
+.header::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: 100px;
+  background-image: url('https://example.com/dino-icon.png'); /* Small decorative dinosaur icon */
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.station-list {
+  list-style-type: none; /* Removes default list styling */
+  padding: 0;
+  max-width: 600px;
+  margin: 20px auto; /* Adds more vertical space around the list */
+}
+
+.station-item {
+  background-color: #ffffff; /* Pure white background for list items */
+  border-left: 5px solid #f2a654; /* Thick orange border on the left */
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for 3D effect */
+  transition: background-color 0.5s, transform 0.3s; /* Smooth transition for interactions */
+}
+
+.station-item:hover {
+  transform: scale(1.05); /* Enlarge on hover for interactivity */
+  background-color: #fff3c1; /* Light yellow background on hover */
+}
+
+.checked-station {
+  color: #8cc63f; /* Green text for checked items */
+  text-decoration: line-through;
+}
+
+.checked-animation {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; /* Adds a playful shake animation on check */
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
   }
-  to {
-    transform: rotate(360deg);
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
