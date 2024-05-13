@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/%7BTest%7D/static/css/main.7acecd8d.css",
+    "main.js": "/%7BTest%7D/static/js/main.dbf8bca9.js",
+    "static/media/Dinokids.ttf": "/%7BTest%7D/static/media/Dinokids.5a449c0e3132e5e7716c.ttf",
+    "index.html": "/%7BTest%7D/index.html",
+    "main.7acecd8d.css.map": "/%7BTest%7D/static/css/main.7acecd8d.css.map",
+    "main.dbf8bca9.js.map": "/%7BTest%7D/static/js/main.dbf8bca9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acecd8d.css",
+    "static/js/main.dbf8bca9.js"
+  ]
+}
