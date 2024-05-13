@@ -1,7 +1,7 @@
 {
   "name": "qrcode",
   "version": "0.1.0",
-  "homepage": "http://{Rohitsangha}.github.io/{Test}",
+  "homepage": "https://rohitsangha.github.io/Test/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
