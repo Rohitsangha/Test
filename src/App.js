@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './App.css';
+import topImage from './topImage.jpg';
+import bottomImage from './bottomImage.jpg';
 
-
-// Helper function to parse query parameters
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
 function App() {
   const [user, setUser] = useState(() => {
-    // Retrieve user data from local storage if available
     const savedUser = localStorage.getItem('user');
-    return savedUser ? JSON.parse(savedUser) : { name: '', school: '' };
+    return savedUser ? JSON.parse(savedUser) : { phone: '' };
   });
+
   const [stations, setStations] = useState(() => {
-    // Retrieve station check-ins from local storage if available
     const savedStations = localStorage.getItem('stations');
     return savedStations ? JSON.parse(savedStations) : {
       station1: false,
@@ -24,7 +23,6 @@ function App() {
       station4: false,
       station5: false,
       station6: false,
-      // Add more stations as necessary
     };
   });
 
@@ -35,17 +33,16 @@ function App() {
     station4: "Check out the Excavator",
     station5: "Learn about TU Jobs",
     station6: "Have Lunch",
-    // Add more mappings as necessary
   };
 
   const [isRegistered, setIsRegistered] = useState(() => {
     const savedUser = localStorage.getItem('user');
-    return !!savedUser;  // Convert to boolean: true if user exists
+    return !!savedUser;
   });
+
   const query = useQuery();
 
   useEffect(() => {
-    // Detect station from URL query and update state
     const stationQuery = query.get('station');
     if (stationQuery && stations.hasOwnProperty(stationQuery) && !stations[stationQuery]) {
       setStations(prevStations => {
@@ -57,7 +54,6 @@ function App() {
   }, [query]);
 
   useEffect(() => {
-    // Persist user data in local storage
     localStorage.setItem('user', JSON.stringify(user));
   }, [user]);
 
@@ -67,14 +63,12 @@ function App() {
   };
 
   const handleSubmit = () => {
-    // Submission logic to backend or Google Sheets
     console.log("Submitting:", user, stations);
     alert('Submission successful!');
 
-    // Optionally clear local storage and state after submission
     localStorage.removeItem('user');
     localStorage.removeItem('stations');
-    setUser({ name: '', school: '' });
+    setUser({ phone: '' });
     setStations({
       station1: false,
       station2: false,
@@ -82,64 +76,66 @@ function App() {
       station4: false,
       station5: false,
       station6: false,
-      // Reset more stations as needed
     });
 
-    setIsRegistered(false); // Reset registration status
+    setIsRegistered(false);
   };
 
   return (
     <div className="App">
-         <div className="header">
-                Public Works Week Scavenger Hunt
+      <div className="image-container top-image-container">
+        <img src={topImage} alt="Top Image" className="top-image" />
+      </div>
+  
+      <button className="welcome-button">Welcome</button>
+  
+      <div className="image-container bottom-image-container">
+        <img src={bottomImage} alt="Bottom Image" className="bottom-image" />
+        <div className="content-overlay">
+  
+          {!isRegistered ? (
+            <div className="form-container">
+              <h2>Scavenger Hunt Registration</h2>
+              <input
+                type="text"
+                name="phone"
+                placeholder="Enter your phone number"
+                value={user.phone}
+                onChange={handleInputChange}
+                required
+              />
+              <button type="button" onClick={() => {
+                if (user.phone) {
+                  localStorage.setItem('user', JSON.stringify(user));
+                  setIsRegistered(true);
+                }
+              }}>
+                Register
+              </button>
             </div>
-            
-      {!isRegistered ? (
-        <div>
-          <h2>Scavenger Hunt Registration</h2>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            value={user.name}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            name="school"
-            placeholder="Enter your school name"
-            value={user.school}
-            onChange={handleInputChange}
-            required
-          />
-          <button type="button" onClick={() => {if (user.name && user.school) {
-        localStorage.setItem('user', JSON.stringify(user));
-        setIsRegistered(true);
-    }}}>
-            Register
-          </button>
-        </div>
-      ) : (
-        <div>
-          <h2>Welcome, {user.name} from {user.school}!</h2>
-          <ul className="station-list">
-  {Object.keys(stations).map(station => (
-    <li key={station} className={`station-item ${stations[station] ? 'checked-station checked-animation' : ''}`}>
-      {STATION_NAMES[station]}: {stations[station] ? "✅ Checked" : "Not Checked"}
-    </li>
-  ))}
-</ul>
-          {Object.values(stations).every(Boolean) && (
-            <button onClick={handleSubmit}>
-              Submit Completion
-            </button>
+          ) : (
+            <div className="stations-container">
+              <div className="header">Public Works Week Scavenger Hunt</div>
+              <ul className="station-list">
+                {Object.keys(stations).map(station => (
+                  <li key={station} className={`station-item ${stations[station] ? 'checked-station checked-animation' : ''}`}>
+                    {STATION_NAMES[station]}: {stations[station] ? "✅" : "❌"}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
-      )}
+        <button 
+          disabled={!Object.values(stations).every(Boolean)} 
+          onClick={handleSubmit} 
+          className="submit-button"
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 }
 
 export default App;
-

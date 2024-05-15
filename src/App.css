@@ -1,128 +1,252 @@
 @font-face {
   font-family: 'DinoKids';
-  src: url('../fonts/Dinokids.ttf') format('truetype'); /* Path to the TrueType font file */
-  font-weight: normal;
-  font-style: normal;
+  src: url('../fonts/Dinokids.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'PatrickHand';
+  src: url('../fonts/PatrickHand.ttf') format('truetype');
+}
 
-/* Base mobile styles */
-body {
-  font-family: 'Comic Sans MS', 'Comic Neue', sans-serif;
-  background-color: #8cc63f; /* Vibrant green reminiscent of a lush jungle */
-  color: #453d3f; /* Deep earthy brown text for contrast */
+* {
   margin: 0;
-  padding: 10px;
-  text-align: center;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-input[type="text"], button {
-  width: 90%; /* Full-width inputs and buttons with padding */
-  font-size: 16px;
-  padding: 15px; /* Increased padding for easier interaction */
-  margin: 10px auto; /* Centered */
-  display: block;
-  background: #fff3c1; /* Light yellow background for inputs and buttons */
-  border: 2px solid #f2a654; /* Orange border */
+.App {
+  display: grid;
+  grid-template-rows: 25% 75%;
+  height: 100vh;
+  position: relative;
 }
 
-button {
-  background-color: #f2a654; /* Orange button for actions */
-  color: #453d3f;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+.image-container {
+  position: relative;
+  overflow: hidden;
 }
 
-button:hover {
-  background-color: #ffc48c; /* Lighter orange on hover */
-  transform: scale(1.1);
+.top-image-container {
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-input[type="text"]:focus, button:focus {
-  outline: none;
-  border-color: #8cc63f; /* Green focus border matching the body background */
-  transform: scale(1.05);
+.bottom-image-container {
+  grid-row: 2 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-/* Enhanced Header Styles */
+.top-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
+.bottom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-/* Header with dinosaur theme */
-.header {
-  background-color: #7cb342; /* Rich jungle green background */
+.welcome-button {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  max-width: 350px;
+  background-color: #FF8C42;
   color: white;
-  padding: 20px;
-  text-align: center;
-  font-size: 32px; /* Large font size for better visibility */
-  font-family: 'DinoKids', cursive, sans-serif; /* Custom dinosaur font */
-  border-radius: 15px; /* Rounded corners for a softer look */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Subtle shadow for depth */
-  background-image: linear-gradient(to right, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 100%), url('https://example.com/dinosaur-pattern.jpg'); /* Background gradient over an image */
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 20px; /* Space below header */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Enhances text readability */
+  font-family: 'DinoKids', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 25px;
+  font-size: 2em;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 10px 0 #CC5200, 0 10px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
-/* Example of how to apply additional decorative elements */
-.header::after {
+.welcome-button:active {
+  transform: translateY(5px);
+  box-shadow: 0 5px 0 #CC5200, 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.welcome-button::before {
   content: '';
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100px;
-  height: 100px;
-  background-image: url('https://example.com/dino-icon.png'); /* Small decorative dinosaur icon */
-  background-size: contain;
-  background-repeat: no-repeat;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 10px;
+  background: white;
+  border-radius: 5px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.content-overlay {
+  position: absolute;
+  bottom: 60px;
+  width: 80%;
+  height: calc(75%);
+  background: rgba(255, 255, 255, 1);
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid rgba(0, 0, 0, 0);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-color: #CC5200;
+  border-radius: 30px;
+  border-width: 1px;
+  font-family: 'PatrickHand', sans-serif;
+}
+
+.header {
+  padding: 10px;
+  background-color: rgba(248, 248, 248, 0.8);
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-container,
+.stations-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  width: 100%;
 }
 
 .station-list {
-  list-style-type: none; /* Removes default list styling */
+  list-style-type: none;
   padding: 0;
-  max-width: 600px;
-  margin: 20px auto; /* Adds more vertical space around the list */
 }
 
 .station-item {
-  background-color: #ffffff; /* Pure white background for list items */
-  border-left: 5px solid #f2a654; /* Thick orange border on the left */
-  padding: 10px 20px;
-  margin-top: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for 3D effect */
-  transition: background-color 0.5s, transform 0.3s; /* Smooth transition for interactions */
-}
-
-.station-item:hover {
-  transform: scale(1.05); /* Enlarge on hover for interactivity */
-  background-color: #fff3c1; /* Light yellow background on hover */
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .checked-station {
-  color: #8cc63f; /* Green text for checked items */
-  text-decoration: line-through;
+  background-color: #e0ffe0;
 }
 
 .checked-animation {
-  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; /* Adds a playful shake animation on check */
+  animation: fadeIn 1s;
 }
 
-@keyframes shake {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.submit-button {
+  position: absolute;
+  top: 93%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  max-width: 350px;
+  background-color: #FF8C42;
+  color: white;
+  font-family: 'PatrickHand', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.5em;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 5px 0 #CC5200, 0 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.submit-button:disabled {
+  background-color: gray;
+  box-shadow: 0 5px 0 gray, 0 5px 5px rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .App {
+    grid-template-rows: 30% 70%;
   }
+
+  .welcome-button {
+    top: 30%;
+    font-size: 1.5em;
+    padding: 16px 32px;
+    max-width: 300px;
+  }
+
+  .welcome-button::before {
+    top: 4px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    grid-template-rows: 35% 65%;
+  }
+
+  .welcome-button {
+    top: 35%;
+    font-size: 1.2em;
+    padding: 12px 24px;
+    max-width: 250px;
+  }
+
+  .welcome-button::before {
+    top: 2px;
+    height: 6px;
+  }
+}
+
+@media (max-height: 667px) {
+  .App {
+    grid-template-rows: 45% 55%;
+  }
+
+  .welcome-button {
+    top: 45%;
+    transform: translate(-50%, -50%);
+  }
+
+  .content-overlay {
   
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
+    bottom: 40px;
   }
 }
