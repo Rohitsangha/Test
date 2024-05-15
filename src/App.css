@@ -16,7 +16,7 @@
 
 .App {
   display: grid;
-  grid-template-rows: 25% 75%;
+  grid-template-rows: 15% 85%; /* Adjusted to give the top image less space */
   height: 100vh;
   position: relative;
 }
@@ -55,7 +55,7 @@
 
 .welcome-button {
   position: absolute;
-  top: 25%;
+  top: 20%; /* Adjusted to place the button between the two images */
   left: 50%;
   transform: translate(-50%, -50%);
   width: 85%;
@@ -97,9 +97,9 @@
 
 .content-overlay {
   position: absolute;
-  bottom: 60px;
+  bottom: 70px; /* Adjust the margin from the bottom */
   width: 80%;
-  height: calc(75%);
+  height: calc(85% - 40px); /* Adjusted to account for new layout */
   background: rgba(255, 255, 255, 1);
   padding-top: 5px;
   padding-left: 20px;
@@ -172,7 +172,7 @@ input {
 
 .submit-button {
   position: absolute;
-  top: 93%;
+  top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 45%;
@@ -195,17 +195,17 @@ input {
 
 .submit-button:disabled {
   background-color: gray;
-  box-shadow: 0 5px 0 gray, 0 5px 5px rgba(0, 0, 0, 0.25);
   cursor: not-allowed;
+  box-shadow: 0 5px 0 #808080, 0 5px 5px rgba(128, 128, 128, 0.25);
 }
 
 @media (max-width: 768px) {
   .App {
-    grid-template-rows: 30% 70%;
+    grid-template-rows: 20% 80%; /* Adjusted for smaller screens */
   }
 
   .welcome-button {
-    top: 30%;
+    top: 20%; /* Adjust position for smaller screens */
     font-size: 1.5em;
     padding: 16px 32px;
     max-width: 300px;
@@ -219,11 +219,11 @@ input {
 
 @media (max-width: 480px) {
   .App {
-    grid-template-rows: 35% 65%;
+    grid-template-rows: 25% 75%; /* Adjusted for smaller screens */
   }
 
   .welcome-button {
-    top: 35%;
+    top: 25%; /* Adjust position for smaller screens */
     font-size: 1.2em;
     padding: 12px 24px;
     max-width: 250px;
@@ -237,16 +237,30 @@ input {
 
 @media (max-height: 667px) {
   .App {
-    grid-template-rows: 45% 55%;
+    grid-template-rows: 35% 65%; /* Increase the height of the top segment */
   }
 
   .welcome-button {
-    top: 45%;
+    top: 35%;
     transform: translate(-50%, -50%);
   }
 
   .content-overlay {
-  
-    bottom: 40px;
+  bottom: 50px
+}
+}
+
+@media (max-height: 740px) {
+  .App {
+    grid-template-rows: 35% 65%; /* Increase the height of the top segment */
   }
+  .welcome-button {
+    top: 35%;
+    transform: translate(-50%, -50%);
+  }
+
+  .content-overlay {
+    bottom: 50px
+  }
+
 }
