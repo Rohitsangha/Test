@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .App {
@@ -223,7 +224,7 @@ input {
   }
 
   .welcome-button {
-    top: 25%; /* Adjust position for smaller screens */
+    top: 24%; /* Adjust position for smaller screens */
     font-size: 1.2em;
     padding: 12px 24px;
     max-width: 250px;
@@ -241,7 +242,7 @@ input {
   }
 
   .welcome-button {
-    top: 35%;
+    top: 23%;
     transform: translate(-50%, -50%);
   }
 
@@ -255,7 +256,7 @@ input {
     grid-template-rows: 35% 65%; /* Increase the height of the top segment */
   }
   .welcome-button {
-    top: 35%;
+    top: 33%;
     transform: translate(-50%, -50%);
   }
 

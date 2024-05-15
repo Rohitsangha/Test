@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './App.css';
-import topImage from './topimage.png';
+import topImage from './topImage.jpg';
 import bottomImage from './bottomImage.jpg';
 
 function useQuery() {
